@@ -1,0 +1,29 @@
+<h1>{{ post.title }}</h1>
+<p>{{ post.content }}</p>
+
+<div class="social-sharing">
+    <p>Share this post:</p>
+    <a href="{% twitter_url post.title post.get_absolute_url %}" target="_blank">Share on Twitter</a> |
+    <a href="{% facebook_url post.get_absolute_url %}" target="_blank">Share on Facebook</a> |
+    <a href="{% linkedin_url post.title post.get_absolute_url %}" target="_blank">Share on LinkedIn</a>
+</div>
+
+<!-- Comments Section -->
+<h2>Comments</h2>
+<ul>
+    {% for comment in comments %}
+    <li>
+        <strong>{{ comment.name }}</strong>: {{ comment.body }}
+    </li>
+    {% empty %}
+    <li>No comments yet.</li>
+    {% endfor %}
+</ul>
+
+<!-- Comment Form -->
+<h3>Leave a Comment:</h3>
+<form method="post">
+    {% csrf_token %}
+    {{ comment_form.as_p }}
+    <button type="submit">Submit</button>
+</form>

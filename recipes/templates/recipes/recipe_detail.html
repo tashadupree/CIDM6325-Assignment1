@@ -1,0 +1,10 @@
+<h1>{{ recipe.title }}</h1>
+<p>{{ recipe.description }}</p>
+<h2>Ingredients</h2>
+<ul>
+    {% for ingredient in recipe.ingredients.splitlines %}
+    <li>{{ ingredient }}</li>
+    {% endfor %}
+</ul>
+<h2>Instructions</h2>
+<p>{{ recipe.instructions }}</p>

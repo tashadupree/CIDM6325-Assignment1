@@ -1,0 +1,27 @@
+{% extends "blog/base.html" %}
+
+{% block content %}
+<h1>Dashboard</h1>
+
+<h2>Statistics</h2>
+<ul>
+    <li>Total Published Posts: {{ total_posts }}</li>
+    <li>Total Comments: {{ total_comments }}</li>
+    <li>Total Recipes: {{ total_recipes }}</li>
+    <li>Average Comments per Post: {{ avg_comments }}</li>
+</ul>
+
+<h2>Latest Comments</h2>
+<ul>
+    {% for comment in latest_comments %}
+    <li>
+        <strong>{{ comment.name }}</strong> on
+        <a href="{{ comment.post.get_absolute_url }}">{{ comment.post.title }}</a>
+        <p>{{ comment.body|truncatewords:10 }}</p>
+        <p><small>Posted on {{ comment.created }}</small></p>
+    </li>
+    {% empty %}
+    <li>No comments available.</li>
+    {% endfor %}
+</ul>
+{% endblock %}

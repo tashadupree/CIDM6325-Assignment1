@@ -1,0 +1,5 @@
+# Ignore environment variables
+.env
+my_env/
+db.sqlite3
+
